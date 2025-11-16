@@ -1,722 +1,703 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>心向暖阳 - 公益行动平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+  
+  <!-- 配置Tailwind自定义主题 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3B82F6',
+            secondary: '#10B981',
+            accent: '#F59E0B',
+            dark: '#1F2937',
+            light: '#F9FAFB'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .card-hover {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+    }
+  </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+
+<body class="font-sans bg-light text-dark">
+  <!-- 导航栏 -->
+  <header class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50 transition-all duration-300">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fa fa-heart text-secondary text-2xl"></i>
+        <span class="text-xl font-bold text-primary">心向暖阳</span>
+      </div>
+      
+      <!-- 桌面导航 -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="#home" class="font-medium hover:text-secondary transition-colors">首页</a>
+        <a href="#projects" class="font-medium hover:text-secondary transition-colors">公益项目</a>
+        <a href="#volunteer" class="font-medium hover:text-secondary transition-colors">志愿者招募</a>
+        <a href="#impact" class="font-medium hover:text-secondary transition-colors">我们的影响</a>
+        <a href="#donate" class="bg-secondary text-white px-5 py-2 rounded-full hover:bg-secondary/90 transition-colors">立即捐赠</a>
+      </nav>
+      
+      <!-- 移动端菜单按钮 -->
+      <button class="md:hidden text-dark text-xl" id="menuBtn">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+    
+    <!-- 移动端导航菜单 -->
+    <div class="md:hidden hidden bg-white absolute w-full shadow-md" id="mobileMenu">
+      <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+        <a href="#home" class="font-medium py-2 hover:text-secondary transition-colors">首页</a>
+        <a href="#projects" class="font-medium py-2 hover:text-secondary transition-colors">公益项目</a>
+        <a href="#volunteer" class="font-medium py-2 hover:text-secondary transition-colors">志愿者招募</a>
+        <a href="#impact" class="font-medium py-2 hover:text-secondary transition-colors">我们的影响</a>
+        <a href="#donate" class="bg-secondary text-white px-5 py-3 rounded-full text-center hover:bg-secondary/90 transition-colors">立即捐赠</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 英雄区域 -->
+  <section id="home" class="pt-24 md:pt-0 min-h-screen flex items-center relative overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="https://picsum.photos/id/1059/1920/1080" alt="公益背景" class="w-full h-full object-cover opacity-20">
+      <div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 py-20 md:py-0 relative z-10">
+      <div class="max-w-3xl">
+        <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-tight text-shadow mb-6">
+          微小的善行，<br>汇聚成巨大的温暖
+        </h1>
+        <p class="text-[clamp(1rem,2vw,1.25rem)] text-dark/80 mb-8 max-w-2xl">
+          我们致力于连接爱心人士与需要帮助的群体，让每一份善意都能传递到最需要的地方，共同创造更美好的世界。
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#donate" class="bg-secondary text-white px-8 py-4 rounded-full text-center font-medium hover:bg-secondary/90 transition-all shadow-lg hover:shadow-xl">
+            奉献爱心 <i class="fa fa-heart ml-2"></i>
+          </a>
+          <a href="#projects" class="bg-white text-primary border-2 border-primary px-8 py-4 rounded-full text-center font-medium hover:bg-primary/5 transition-all">
+            了解项目 <i class="fa fa-arrow-right ml-2"></i>
+          </a>
         </div>
-    </header>
+      </div>
+    </div>
+    
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <a href="#projects" class="text-primary/70 hover:text-primary transition-colors">
+        <i class="fa fa-chevron-down text-2xl"></i>
+      </a>
+    </div>
+  </section>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+  <!-- 公益项目展示 -->
+  <section id="projects" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">我们的公益项目</h2>
+        <p class="text-dark/70 max-w-2xl mx-auto">每一个项目都承载着希望与改变的力量，点击了解更多，参与其中</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 项目卡片1 -->
+        <div class="bg-light rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="h-56 overflow-hidden">
+            <img src="https://picsum.photos/id/1025/600/400" alt="助学计划" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">教育支持</span>
+              <span class="text-sm text-dark/60"><i class="fa fa-map-marker mr-1"></i> 云南山区</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">暖阳助学计划</h3>
+            <p class="text-dark/70 mb-4">为贫困山区儿童提供教育资源，帮助他们获得平等的学习机会，点亮求学梦想。</p>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-2xl font-bold text-secondary">¥286,500</span>
+                <span class="text-dark/60 ml-1">已筹集</span>
+              </div>
+              <a href="#" class="text-primary font-medium hover:underline">查看详情 <i class="fa fa-angle-right ml-1"></i></a>
+            </div>
+          </div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
+        
+        <!-- 项目卡片2 -->
+        <div class="bg-light rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="h-56 overflow-hidden">
+            <img src="https://picsum.photos/id/1083/600/400" alt="净水工程" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium">基础建设</span>
+              <span class="text-sm text-dark/60"><i class="fa fa-map-marker mr-1"></i> 贵州乡村</span>
             </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
+            <h3 class="text-xl font-bold mb-2">生命之源净水工程</h3>
+            <p class="text-dark/70 mb-4">为缺水地区建设净水设施，解决当地居民饮水安全问题，预防水源性疾病。</p>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-2xl font-bold text-secondary">¥420,350</span>
+                <span class="text-dark/60 ml-1">已筹集</span>
+              </div>
+              <a href="#" class="text-primary font-medium hover:underline">查看详情 <i class="fa fa-angle-right ml-1"></i></a>
             </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
-
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
+        
+        <!-- 项目卡片3 -->
+        <div class="bg-light rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="h-56 overflow-hidden">
+            <img src="https://picsum.photos/id/1074/600/400" alt="关爱老人" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-medium">关爱行动</span>
+              <span class="text-sm text-dark/60"><i class="fa fa-map-marker mr-1"></i> 全国多地</span>
             </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
+            <h3 class="text-xl font-bold mb-2">夕阳红关爱计划</h3>
+            <p class="text-dark/70 mb-4">为孤寡老人提供生活照料和精神陪伴，组织义诊和文化活动，让他们安享晚年。</p>
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-2xl font-bold text-secondary">¥156,820</span>
+                <span class="text-dark/60 ml-1">已筹集</span>
+              </div>
+              <a href="#" class="text-primary font-medium hover:underline">查看详情 <i class="fa fa-angle-right ml-1"></i></a>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="#" class="inline-flex items-center text-primary font-medium hover:text-primary/80 transition-colors">
+          查看全部项目 <i class="fa fa-long-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
+  <!-- 捐赠区域 -->
+  <section id="donate" class="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div class="grid md:grid-cols-2">
+          <div class="p-8 md:p-12 flex flex-col justify-center">
+            <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold mb-4">献出您的爱心</h2>
+            <p class="text-dark/70 mb-6">您的每一笔捐款，都将帮助有需要的人获得更好的生活。我们承诺，每一分善款都将用于公益项目本身。</p>
             
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
+            <form class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium mb-1">选择金额</label>
+                <div class="grid grid-cols-3 gap-3 mb-3">
+                  <button type="button" class="donation-amount py-3 border border-gray-200 rounded-lg hover:border-primary hover:text-primary transition-colors">¥50</button>
+                  <button type="button" class="donation-amount py-3 border border-gray-200 rounded-lg hover:border-primary hover:text-primary transition-colors">¥100</button>
+                  <button type="button" class="donation-amount py-3 border border-gray-200 rounded-lg hover:border-primary hover:text-primary transition-colors">¥200</button>
+                  <button type="button" class="donation-amount py-3 border border-gray-200 rounded-lg hover:border-primary hover:text-primary transition-colors">¥500</button>
+                  <button type="button" class="donation-amount py-3 border border-gray-200 rounded-lg hover:border-primary hover:text-primary transition-colors">¥1000</button>
+                  <button type="button" class="donation-amount py-3 border border-gray-200 rounded-lg hover:border-primary hover:text-primary transition-colors">其他</button>
+                </div>
+                <input type="number" placeholder="自定义金额" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium mb-1">您的姓名</label>
+                <input type="text" placeholder="请输入您的姓名" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium mb-1">联系电话</label>
+                <input type="tel" placeholder="请输入您的联系电话" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+              </div>
+              
+              <button type="submit" class="w-full bg-secondary text-white py-4 rounded-lg font-medium hover:bg-secondary/90 transition-colors shadow-md hover:shadow-lg">
+                确认捐赠 <i class="fa fa-heart ml-1"></i>
+              </button>
+            </form>
+          </div>
+          
+          <div class="hidden md:block relative">
+            <img src="https://picsum.photos/id/325/800/1200" alt="爱心捐赠" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-primary/60 to-secondary/60 flex items-center justify-center">
+              <div class="text-center text-white p-8">
+                <i class="fa fa-heart text-6xl mb-4 animate-pulse"></i>
+                <h3 class="text-2xl font-bold mb-2">感谢您的爱心</h3>
+                <p class="mb-6">每一份善意都值得被铭记</p>
+                <div class="space-y-2 text-left max-w-xs mx-auto">
+                  <div class="flex items-center">
+                    <i class="fa fa-check-circle mr-2"></i>
+                    <span>100%透明的资金使用</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fa fa-check-circle mr-2"></i>
+                    <span>定期项目进展公示</span>
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fa fa-check-circle mr-2"></i>
+                    <span>捐赠证书电子存档</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 志愿者招募 -->
+  <section id="volunteer" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">成为志愿者</h2>
+        <p class="text-dark/70 max-w-2xl mx-auto">用您的时间和技能，为需要帮助的人带来希望和改变</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="order-2 md:order-1">
+          <h3 class="text-2xl font-bold mb-4">加入我们的志愿者团队</h3>
+          <p class="text-dark/70 mb-6">无论您有何种技能和兴趣，我们都能为您提供合适的志愿服务机会。您可以参与支教、社区服务、环保活动等多种形式的公益行动。</p>
+          
+          <div class="space-y-4 mb-8">
+            <div class="flex items-start">
+              <div class="bg-primary/10 p-2 rounded-full mr-4 mt-1">
+                <i class="fa fa-users text-primary"></i>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">团队协作</h4>
+                <p class="text-dark/70 text-sm">与志同道合的人一起工作，共同完成有意义的任务</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="bg-primary/10 p-2 rounded-full mr-4 mt-1">
+                <i class="fa fa-globe text-primary"></i>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">社会影响</h4>
+                <p class="text-dark/70 text-sm">直接参与改善社会问题，见证自己带来的改变</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="bg-primary/10 p-2 rounded-full mr-4 mt-1">
+                <i class="fa fa-graduation-cap text-primary"></i>
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">个人成长</h4>
+                <p class="text-dark/70 text-sm">获得新技能、新体验，拓展视野和人脉</p>
+              </div>
+            </div>
+          </div>
+          
+          <a href="#" class="inline-block bg-primary text-white px-8 py-3 rounded-full font-medium hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg">
+            立即报名 <i class="fa fa-paper-plane ml-2"></i>
+          </a>
+        </div>
+        
+        <div class="order-1 md:order-2 grid grid-cols-2 gap-4">
+          <div class="space-y-4">
+            <img src="https://picsum.photos/id/26/600/800" alt="志愿者活动" class="rounded-lg shadow-md w-full h-64 object-cover">
+            <img src="https://picsum.photos/id/177/600/400" alt="志愿者活动" class="rounded-lg shadow-md w-full h-40 object-cover">
+          </div>
+          <div class="space-y-4 mt-8">
+            <img src="https://picsum.photos/id/452/600/400" alt="志愿者活动" class="rounded-lg shadow-md w-full h-40 object-cover">
+            <img src="https://picsum.photos/id/646/600/800" alt="志愿者活动" class="rounded-lg shadow-md w-full h-64 object-cover">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 影响力数据 -->
+  <section id="impact" class="py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">我们的影响力</h2>
+        <p class="text-dark/70 max-w-2xl mx-auto">每一份努力都在创造真实的改变，这些数字见证着我们共同的成就</p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+        <div class="bg-white rounded-xl p-6 text-center shadow-md">
+          <div class="text-primary text-4xl font-bold mb-2 counter" data-target="125">0</div>
+          <p class="text-dark/70">完成公益项目</p>
+        </div>
+        
+        <div class="bg-white rounded-xl p-6 text-center shadow-md">
+          <div class="text-primary text-4xl font-bold mb-2 counter" data-target="3860">0</div>
+          <p class="text-dark/70">帮助儿童数量</p>
+        </div>
+        
+        <div class="bg-white rounded-xl p-6 text-center shadow-md">
+          <div class="text-primary text-4xl font-bold mb-2 counter" data-target="1250">0</div>
+          <p class="text-dark/70">志愿者人数</p>
+        </div>
+        
+        <div class="bg-white rounded-xl p-6 text-center shadow-md">
+          <div class="text-primary text-4xl font-bold mb-2 counter" data-target="1520">0</div>
+          <p class="text-dark/70">捐赠人次</p>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-xl shadow-md p-6 md:p-8">
+        <h3 class="text-xl font-bold mb-6 text-center">公益资金使用分布</h3>
+        <div class="h-80">
+          <canvas id="fundChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 受益人故事 -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">受益人故事</h2>
+        <p class="text-dark/70 max-w-2xl mx-auto">每一个故事背后，都是生命被改变的真实见证</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- 故事1 -->
+        <div class="bg-light rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              <img src="https://picsum.photos/id/64/100/100" alt="受益人照片" class="w-16 h-16 rounded-full object-cover mr-4">
+              <div>
+                <h4 class="font-bold">李小明</h4>
+                <p class="text-dark/60 text-sm">云南 · 暖阳助学计划</p>
+              </div>
+            </div>
+            <p class="text-dark/80 mb-4">"因为有了暖阳助学计划的帮助，我才有机会继续上学。现在我已经是县里重点高中的学生，将来想成为一名医生，回去帮助家乡的人。"</p>
+            <div class="text-primary text-sm font-medium">
+              <i class="fa fa-quote-left opacity-30"></i>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 故事2 -->
+        <div class="bg-light rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              <img src="https://picsum.photos/id/26/100/100" alt="受益人照片" class="w-16 h-16 rounded-full object-cover mr-4">
+              <div>
+                <h4 class="font-bold">王奶奶</h4>
+                <p class="text-dark/60 text-sm">河南 · 夕阳红关爱计划</p>
+              </div>
+            </div>
+            <p class="text-dark/80 mb-4">"志愿者们经常来看我，给我带吃的，陪我聊天，还帮我打扫房子。以前一个人很孤单，现在感觉生活有了色彩，真的很感谢他们。"</p>
+            <div class="text-primary text-sm font-medium">
+              <i class="fa fa-quote-left opacity-30"></i>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 故事3 -->
+        <div class="bg-light rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              <img src="https://picsum.photos/id/91/100/100" alt="受益人照片" class="w-16 h-16 rounded-full object-cover mr-4">
+              <div>
+                <h4 class="font-bold">张建国</h4>
+                <p class="text-dark/60 text-sm">贵州 · 生命之源净水工程</p>
+              </div>
+            </div>
+            <p class="text-dark/80 mb-4">"以前我们村喝水要走几里路挑，而且水不干净，很多人闹病。现在有了干净的自来水，生活方便多了，孩子们也很少生病了。"</p>
+            <div class="text-primary text-sm font-medium">
+              <i class="fa fa-quote-left opacity-30"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 合作伙伴 -->
+  <section class="py-16 bg-light">
+    <div class="container mx-auto px-4">
+      <h2 class="text-center text-xl font-bold mb-10">合作伙伴</h2>
+      <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+        <div class="grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+          <img src="https://picsum.photos/id/1/120/60" alt="合作伙伴" class="h-8 md:h-10">
+        </div>
+        <div class="grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+          <img src="https://picsum.photos/id/2/120/60" alt="合作伙伴" class="h-8 md:h-10">
+        </div>
+        <div class="grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+          <img src="https://picsum.photos/id/3/120/60" alt="合作伙伴" class="h-8 md:h-10">
+        </div>
+        <div class="grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+          <img src="https://picsum.photos/id/4/120/60" alt="合作伙伴" class="h-8 md:h-10">
+        </div>
+        <div class="grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+          <img src="https://picsum.photos/id/5/120/60" alt="合作伙伴" class="h-8 md:h-10">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="bg-dark text-white pt-16 pb-8">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div>
+          <div class="flex items-center space-x-2 mb-6">
+            <i class="fa fa-heart text-secondary text-2xl"></i>
+            <span class="text-xl font-bold">心向暖阳</span>
+          </div>
+          <p class="text-white/70 mb-6">我们相信，每一份微小的善意，都能汇聚成改变世界的力量。</p>
+          <div class="flex space-x-4">
+            <a href="#" class="bg-white/10 w-10 h-10 rounded-full flex items-center justify-center hover:bg-secondary transition-colors">
+              <i class="fa fa-weixin"></i>
+            </a>
+            <a href="#" class="bg-white/10 w-10 h-10 rounded-full flex items-center justify-center hover:bg-secondary transition-colors">
+              <i class="fa fa-weibo"></i>
+            </a>
+            <a href="#" class="bg-white/10 w-10 h-10 rounded-full flex items-center justify-center hover:bg-secondary transition-colors">
+              <i class="fa fa-instagram"></i>
+            </a>
+            <a href="#" class="bg-white/10 w-10 h-10 rounded-full flex items-center justify-center hover:bg-secondary transition-colors">
+              <i class="fa fa-youtube-play"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-bold mb-6">快速链接</h4>
+          <ul class="space-y-3">
+            <li><a href="#home" class="text-white/70 hover:text-secondary transition-colors">首页</a></li>
+            <li><a href="#projects" class="text-white/70 hover:text-secondary transition-colors">公益项目</a></li>
+            <li><a href="#volunteer" class="text-white/70 hover:text-secondary transition-colors">志愿者招募</a></li>
+            <li><a href="#impact" class="text-white/70 hover:text-secondary transition-colors">我们的影响</a></li>
+            <li><a href="#" class="text-white/70 hover:text-secondary transition-colors">关于我们</a></li>
+            <li><a href="#" class="text-white/70 hover:text-secondary transition-colors">新闻动态</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-bold mb-6">联系我们</h4>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fa fa-map-marker mt-1 mr-3 text-secondary"></i>
+              <span class="text-white/70">北京市朝阳区建国路88号</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fa fa-phone mr-3 text-secondary"></i>
+              <span class="text-white/70">010-12345678</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fa fa-envelope mr-3 text-secondary"></i>
+              <span class="text-white/70">contact@xinxiangnuanyang.org</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-bold mb-6">订阅通讯</h4>
+          <p class="text-white/70 mb-4">订阅我们的电子通讯，了解最新的公益项目和活动信息</p>
+          <form class="flex">
+            <input type="email" placeholder="您的邮箱地址" class="px-4 py-2 rounded-l-lg w-full focus:outline-none text-dark">
+            <button type="submit" class="bg-secondary px-4 py-2 rounded-r-lg hover:bg-secondary/90 transition-colors">
+              <i class="fa fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="border-t border-white/10 pt-8 text-center text-white/50 text-sm">
+        <p>© 2023 心向暖阳公益平台 版权所有 | 京ICP备12345678号</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 返回顶部按钮 -->
+  <button id="backToTop" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary/90">
+    <i class="fa fa-chevron-up"></i>
+  </button>
+
+  <!-- JavaScript -->
+  <script>
+    // 移动端菜单切换
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      const icon = menuBtn.querySelector('i');
+      if (icon.classList.contains('fa-bars')) {
+        icon.classList.replace('fa-bars', 'fa-times');
+      } else {
+        icon.classList.replace('fa-times', 'fa-bars');
+      }
+    });
+    
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        // 关闭移动菜单
+        if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+          const icon = menuBtn.querySelector('i');
+          icon.classList.replace('fa-times', 'fa-bars');
         }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // 返回顶部按钮
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.remove('opacity-0', 'invisible');
+        backToTopBtn.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopBtn.classList.remove('opacity-100', 'visible');
+        backToTopBtn.classList.add('opacity-0', 'invisible');
+      }
+      
+      // 导航栏滚动效果
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.classList.add('py-2', 'shadow');
+        header.classList.remove('py-3');
+      } else {
+        header.classList.add('py-3');
+        header.classList.remove('py-2', 'shadow');
+      }
+    });
+    
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // 捐赠金额选择
+    const donationAmounts = document.querySelectorAll('.donation-amount');
+    
+    donationAmounts.forEach(btn => {
+      btn.addEventListener('click', () => {
+        donationAmounts.forEach(b => {
+          b.classList.remove('bg-primary/10', 'border-primary', 'text-primary');
+          b.classList.add('border-gray-200');
         });
-    </script>
+        
+        btn.classList.add('bg-primary/10', 'border-primary', 'text-primary');
+        btn.classList.remove('border-gray-200');
+      });
+    });
+    
+    // 数字计数动画
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
+    
+    const animateCounters = () => {
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / speed;
+        
+        if (count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(animateCounters, 1);
+        } else {
+          counter.innerText = target.toLocaleString();
+        }
+      });
+    };
+    
+    // 监听元素进入视口
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    if (counters.length > 0) {
+      observer.observe(document.querySelector('#impact'));
+    }
+    
+    // 资金使用图表
+    const ctx = document.getElementById('fundChart').getContext('2d');
+    const fundChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['教育支持', '医疗救助', '基础设施', '生活物资', '行政管理'],
+        datasets: [{
+          data: [40, 25, 15, 15, 5],
+          backgroundColor: [
+            '#3B82F6',
+            '#10B981',
+            '#F59E0B',
+            '#6366F1',
+            '#9CA3AF'
+          ],
+          borderWidth: 0,
+          hoverOffset: 10
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {
+              padding: 20,
+              font: {
+                size: 12
+              }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return `${context.label}: ${context.raw}%`;
+              }
+            }
+          }
+        },
+        cutout: '70%'
+      }
+    });
+  </script>
 </body>
-
 </html>
